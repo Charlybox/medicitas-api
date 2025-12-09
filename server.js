@@ -2,7 +2,7 @@ const express = require("express");
 const sqlite3 = require("sqlite3").verbose();
 const cors = require("cors");
 const path = require("path");
-
+npm install pg
 const app = express();
 app.use(cors());
 app.use(express.json());
