@@ -1,5 +1,5 @@
 const express = require("express");
-const sqlite3 = require("sqlite3").verbose();
+const { Pool } = require("pg");
 const cors = require("cors");
 const path = require("path");
 npm install pg
@@ -9,8 +9,9 @@ app.use(express.json());
 
 // ================== BASE DE DATOS ==================
 const dbPath = path.join(__dirname, "data", "medicitas.db");
-const db = new sqlite3.Database(dbPath);
-
+const db = new Pool({
+    connectionString: process.env.DATABASE_URL
+});
 db.serialize(() => {
     db.run("PRAGMA foreign_keys = ON");
 
