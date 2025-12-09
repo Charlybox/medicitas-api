@@ -11,6 +11,7 @@ app.use(express.json());
 const dbPath = path.join(__dirname, "data", "medicitas.db");
 const db = new Pool({
     connectionString: process.env.DATABASE_URL
+    ssl: { rejectUnauthorized: false }
 });
 db.serialize(() => {
     db.run("PRAGMA foreign_keys = ON");
